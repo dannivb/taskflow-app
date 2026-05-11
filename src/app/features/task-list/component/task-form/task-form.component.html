@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Titulo *</label>
+    <input
+      formControlName="title"
+      type="text"
+      placeholder="Nombre de la tarea"
+    />
+    @if (
+      form.get("title")?.touched && form.get("title")?.hasError("required")
+    ) {
+      <span>El titulo es requerido</span>
+    }
+    @if (
+      form.get("title")?.touched && form.get("title")?.hasError("minlength")
+    ) {
+      <span>Minimo 3 caracteres</span>
+    }
+  </div>
+
+  <div>
+    <label>Descripción *</label>
+    <input
+      formControlName="description"
+      type="text"
+      placeholder="Descripción de la tarea"
+    />
+    @if (
+      form.get("description")?.touched &&
+      form.get("description")?.hasError("required")
+    ) {
+      <span>La descripción es requerida</span>
+    }
+  </div>
+
+  <div>
+    <label>Estado</label>
+    <select formControlName="status">
+      <option value="new">Nuevo</option>
+      <option value="pending">Pendiente</option>
+      <option value="in-progress">En progreso</option>
+      <option value="done">Terminado</option>
+    </select>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="form.invalid">Guardar</button>
+    <button type="submit" (click)="onCancel()">Cancelar</button>
+  </div>
+</form>

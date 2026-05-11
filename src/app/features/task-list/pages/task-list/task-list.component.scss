@@ -1,0 +1,40 @@
+
+.task-container{
+    display: flex;
+    flex-wrap: wrap;
+    .card-task{
+        padding: 10px;
+        margin: 5px;
+        width: 300px;
+        height: 250px;
+        background-color: rgb(205, 231, 255);
+        border-radius: 10px;
+    }
+}
+
+.badge{
+    padding: 5px 10px;
+    border-radius: 10px;
+    color:#FFFFFF;
+    &.badge-new{
+        background-color: #4476ff;
+    }
+    &.badge-pending{
+        background-color: #de5c00;
+    }
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    margin:5px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    &.delete{
+        background: #de5c00;
+    }
+}
