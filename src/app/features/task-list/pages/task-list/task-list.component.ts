@@ -3,10 +3,12 @@ import { ITask } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../service/tasks.service';
 import { TaskFormComponent } from '../../component/task-form/task-form.component';
+import { TaskStatusPipe } from '../../pipes/task-status.pipe';
 
 @Component({
   selector: 'app-task',
-  imports: [CommonModule, TaskFormComponent],
+  standalone: true,
+  imports: [CommonModule, TaskFormComponent, TaskStatusPipe],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })

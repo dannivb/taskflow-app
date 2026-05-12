@@ -9,7 +9,7 @@
         <h3>{{ task.title }}</h3>
         <p>{{ task.description }}</p>
         <span [class]="'badge badge-' + task.status">
-          {{ task.status }}
+          {{ task.status | taskStatus }}
         </span>
         <div class="button-container">
           <button (click)="onEditTask(task)">Actualizar</button>
