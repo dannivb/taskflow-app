@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ITask } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../service/tasks.service';
 import { TaskFormComponent } from '../../component/task-form/task-form.component';
 import { TaskStatusPipe } from '../../pipes/task-status.pipe';
+import { TaskApiService } from '../../service/task-api.service';
 
 @Component({
   selector: 'app-task',
@@ -12,14 +13,24 @@ import { TaskStatusPipe } from '../../pipes/task-status.pipe';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   formVisible: boolean = false;
 
   taskService = inject(TasksService);
 
+  taskServiceApi = inject(TaskApiService);
+
   tasks = this.taskService.tasks$;
 
   taskToEdit: ITask | null = null;
+
+  taskList = signal<ITask[]>([]);
+
+  ngOnInit(): void {
+    this.taskServiceApi.getAll().subscribe((res) => {
+      this.taskList.set(res);
+    });
+  }
 
   deleteTask(id: string): void {
     this.taskService.delete(id);

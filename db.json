@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Tarea desde servicio simulado",
+      "description": "Descripcion de nuestro servicio",
+      "status": "pending",
+      "createdAt": "12/05/2026"
+    }
+  ]
+}

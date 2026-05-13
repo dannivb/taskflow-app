@@ -1,10 +1,10 @@
 <section>
-  <h2>Mis tareas {{ tasks().length }}</h2>
+  <h2>Mis tareas {{ taskList().length }}</h2>
 
   <button (click)="formVisible = true">Nuevo</button>
 
   <div class="task-container">
-    @for (task of tasks(); track task.id) {
+    @for (task of taskList(); track task.id) {
       <div class="card-task">
         <h3>{{ task.title }}</h3>
         <p>{{ task.description }}</p>
@@ -18,7 +18,7 @@
       </div>
     }
   </div>
-  @if (tasks().length == 0) {
+  @if (taskList().length == 0) {
     <p>No hay tareas aun.</p>
   }
 </section>

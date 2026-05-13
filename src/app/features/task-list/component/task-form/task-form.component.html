@@ -14,7 +14,7 @@
     @if (
       form.get("title")?.touched && form.get("title")?.hasError("minlength")
     ) {
-      <span>Minimo 3 caracteres</span>
+      <span class="error" >Minimo 3 caracteres</span>
     }
   </div>
 
@@ -44,7 +44,7 @@
   </div>
 
   <div>
-    <button type="submit" [disabled]="form.invalid">Guardar</button>
+    <button type="submit" >Guardar</button>
     <button type="submit" (click)="onCancel()">Cancelar</button>
   </div>
 </form>
