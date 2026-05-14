@@ -1,0 +1,60 @@
+<h1>
+  {{ idTask() ? "Editar Tarea" : "Crear Tarea" }}
+</h1>
+@if (idTask()) {
+  <h3>
+    {{ taskToEdit()?.title }}
+  </h3>
+}
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label>Titulo *</label>
+    <input
+      formControlName="title"
+      type="text"
+      placeholder="Nombre de la tarea"
+    />
+    @if (
+      form.get("title")?.touched && form.get("title")?.hasError("required")
+    ) {
+      <span>El titulo es requerido</span>
+    }
+    @if (
+      form.get("title")?.touched && form.get("title")?.hasError("minlength")
+    ) {
+      <span class="error">Minimo 3 caracteres</span>
+    }
+  </div>
+
+  <div class="form-field">
+    <label>Descripción *</label>
+    <input
+      formControlName="description"
+      type="text"
+      placeholder="Descripción de la tarea"
+    />
+    @if (
+      form.get("description")?.touched &&
+      form.get("description")?.hasError("required")
+    ) {
+      <span>La descripción es requerida</span>
+    }
+  </div>
+
+  <div class="form-field">
+    <label>Estado</label>
+    <select formControlName="status">
+      <option value="new">Nuevo</option>
+      <option value="pending">Pendiente</option>
+      <option value="in-progress">En progreso</option>
+      <option value="done">Terminado</option>
+    </select>
+  </div>
+
+  <div>
+    <button class="button save" type="submit">Guardar</button>
+    <button class="button cancel" type="submit" (click)="redirecToList()">
+      Cancelar
+    </button>
+  </div>
+</form>

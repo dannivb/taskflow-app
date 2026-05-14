@@ -1,31 +1,34 @@
-<section>
-  <h2>Mis tareas {{ taskList().length }}</h2>
+@if (!loading()) {
+  <section>
+    <h2>Mis tareas {{ taskList().length }}</h2>
 
-  <button (click)="formVisible = true">Nuevo</button>
+    <button (click)="onCreateTask()">Nuevo</button>
+    <button (click)="fetchTasks()">Actualizar</button>
 
-  <div class="task-container">
-    @for (task of taskList(); track task.id) {
-      <div class="card-task">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
-        <span [class]="'badge badge-' + task.status">
-          {{ task.status | taskStatus }}
-        </span>
-        <div class="button-container">
-          <button (click)="onEditTask(task)">Actualizar</button>
-          <button class="delete" (click)="deleteTask(task.id)">Eliminar</button>
+    <div class="task-container">
+      @for (task of taskList(); track task.id) {
+        <div class="card-task">
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+          <span [class]="'badge badge-' + task.status">
+            {{ task.status | taskStatus }}
+          </span>
+          <div class="button-container">
+            <button (click)="onDetailTaskRouter(task.id)">Ver detalle</button>
+            <button (click)="onEditTaskRouter(task.id)">Actualizar</button>
+            <button class="delete" (click)="deleteTask(task.id)">
+              Eliminar
+            </button>
+          </div>
         </div>
-      </div>
+      }
+    </div>
+    @if (taskList().length == 0 &&  !error()) {
+      <p>No hay tareas aun.</p>
     }
-  </div>
-  @if (taskList().length == 0) {
-    <p>No hay tareas aun.</p>
-  }
-</section>
-
-@if (formVisible) {
-  <app-task-form
-    (formSubmit)="onCreateNew($event)"
-    [taskToEdit]="taskToEdit"
-  ></app-task-form>
+  </section>
+} @else {
+  <app-loader></app-loader>
 }
+
+<p>{{ error() }}</p>

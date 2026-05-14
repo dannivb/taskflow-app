@@ -7,12 +7,9 @@ import { ITask } from '../models/task.model';
   providedIn: 'root',
 })
 export class TaskApiService {
-  
-  
   http = inject(HttpClient);
 
   urlBase = 'http://localhost:3000/tasks';
-
 
   getAll(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.urlBase);
@@ -23,7 +20,11 @@ export class TaskApiService {
   }
 
   create(taskIncome: Omit<ITask, 'id' | 'createdAt'>): Observable<ITask> {
-    return this.http.post<ITask>(this.urlBase, taskIncome);
+    return this.http.post<ITask>(this.urlBase, {
+      ...taskIncome,
+      id: String(new Date()),
+      createdAt: new Date(),
+    });
   }
 
   update(

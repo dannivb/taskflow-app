@@ -4,6 +4,8 @@ import { TaskComponent } from './task-list.component';
 import { ITask } from '../../models/task.model';
 import { signal } from '@angular/core';
 import { TasksService } from '../../service/tasks.service';
+import { TaskApiService } from '../../service/task-api.service';
+import { of } from 'rxjs';
 
 const mockTasks: ITask[] = [
   {
@@ -23,7 +25,7 @@ const mockTasks: ITask[] = [
 ];
 
 const mockTaskService = {
-  getAll: () => mockTasks,
+  getAll: () => of(mockTasks),
   tasks$: signal<ITask[]>(mockTasks),
   delete: jasmine.createSpy('delete'),
 };
@@ -37,7 +39,7 @@ describe('TaskListComponent', () => {
       imports: [TaskComponent],
       providers: [
         {
-          provide: TasksService,
+          provide: TaskApiService,
           useValue: mockTaskService,
         },
       ],

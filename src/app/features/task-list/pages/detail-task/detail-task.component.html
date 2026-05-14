@@ -1,0 +1,23 @@
+@if (!taskDetail()) {
+  <div>
+    <h1>La tarea con id {{ idTask() }} no existe</h1>
+
+    <div>
+      <button (click)="redirecToList()">Regresar al Listado</button>
+    </div>
+  </div>
+} @else {
+  <div>
+    <h1>Titulo: {{ taskDetail()?.title }}</h1>
+    <p>Descripción: {{ taskDetail()?.description }}</p>
+    <p>Status: {{ taskDetail()?.status }}</p>
+    <div>
+        <button (click)="redirecToUpdate()" >Actualizar tarea</button>
+        <button (click)="onDelete()">Eliminar tarea</button>
+    </div>
+
+    <div>
+      <button (click)="redirecToList()">Regresar al Listado</button>
+    </div>
+  </div>
+}

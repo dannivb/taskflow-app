@@ -22,6 +22,12 @@
     &.badge-pending{
         background-color: #de5c00;
     }
+     &.badge-in-progress{
+        background-color: #840080;
+    }
+     &.badge-done{
+        background-color: #007036;
+    }
 }
 
 .button-container{

@@ -1,11 +1,31 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Tarea desde servicio simulado",
-      "description": "Descripcion de nuestro servicio",
-      "status": "pending",
-      "createdAt": "12/05/2026"
+      "title": "Tarea Alpha",
+      "description": "Descripcion",
+      "status": "new",
+      "id": "wJUI9WhxAME",
+      "createdAt": "2026-05-14T01:11:50.776Z"
+    },
+    {
+      "title": "Tarea Beta",
+      "description": "Descripcion beta",
+      "status": "done",
+      "id": "c9zLZ5fpriw"
+    },
+    {
+      "title": "Tarea  3",
+      "description": "Descripcion 3",
+      "status": "done",
+      "id": "B8liwN0sqwU"
+    },
+    {
+      "title": "Tarea terminada",
+      "description": "Descripcion ejemplo",
+      "status": "done",
+      "id": "fqZIpfQyi4M",
+      "createdAt": "2026-05-14T01:12:30.375Z"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
